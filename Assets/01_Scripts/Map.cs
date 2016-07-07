@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Linq;
-using System.Collections.Generic;
 using System;
 
 public class Map : MonoSingleton<Map>
@@ -65,7 +64,6 @@ public class Map : MonoSingleton<Map>
                 uvCoords[((i + 1) * verticesWidth + j) * 4 + 0] = new Vector2(0, 0);
                 //Bottom right corner east
                 uvCoords[((i + 1) * verticesWidth + j + 1) * 4 + 1] = new Vector2(1, 0);
-
             }
         }
         return uvCoords;

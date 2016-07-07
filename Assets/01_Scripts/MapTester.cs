@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class MapTester : MonoBehaviour {
-
 	// Use this for initialization
 	void Start ()
     {
@@ -17,6 +15,4 @@ public class MapTester : MonoBehaviour {
         }
         Map.instance.MakeMap(map);
 	}
-	
-	
 }
