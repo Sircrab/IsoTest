@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class MapTester : MonoBehaviour {
 
@@ -17,6 +16,4 @@ public class MapTester : MonoBehaviour {
         }
         Map.instance.MakeMap(map);
 	}
-	
-	
 }
