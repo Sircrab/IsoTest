@@ -18,7 +18,10 @@ public class Map : MonoSingleton<Map>
     public void MakeMap(Tile[][] tiles)
     {
         //TODO: Where are the tests?
-        if (tiles.Length <= 0 || tiles.Any(x => x.Length <= 0) || Array.Exists(tiles, x => x.Length != tiles[0].Length))
+        if (tiles == null 
+            || tiles.Any(x => x == null) 
+            || tiles.Any(x => x.Length <= 0) 
+            || Array.Exists<Tile[]>(tiles, x => x.Length != tiles[0].Length))
         {
             throw new InvalidTileSizeException("Tiles array must be non-empty rectangular shaped");
         }
