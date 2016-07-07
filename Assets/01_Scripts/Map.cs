@@ -7,9 +7,6 @@ public class Map : MonoSingleton<Map>
     [SerializeField]
     private MeshFilter m_meshFilter;
 
-    [SerializeField]
-    private Sprite[] m_sprites;
-
     public const float tileSize = 5f;
 
     private Tile[][] m_tiles;
@@ -18,18 +15,8 @@ public class Map : MonoSingleton<Map>
         set { m_tiles = value; }
     }
 
-    public Sprite GetSpriteByID(int ID)
-    {
-        if(ID < 0 || ID >= m_sprites.Length)
-        {
-            throw new InvalidTileIDException("Invalid Tile ID");
-        }
-        return m_sprites[ID];
-    }
-
     public void MakeMap(Tile[][] tiles)
     {
-        //TODO: Where are the tests?
         if (tiles == null 
             || tiles.Any(x => x == null) 
             || tiles.Any(x => x.Length <= 0) 
@@ -70,7 +57,7 @@ public class Map : MonoSingleton<Map>
         {
             for (int j = 0; j < tilesWidth; j++)
             {
-                Sprite tileSprite = GetSpriteByID(m_tiles[i][j].id);
+                Sprite tileSprite = SpriteHolder.instance.GetSpriteByID(m_tiles[i][j].id);
                 //Top left corner south
                 uvCoords[(i * verticesWidth + j) * 4 + 0 + 2] = tileSprite.uv[1];
                 //Top right corner west
@@ -120,10 +107,7 @@ public class Map : MonoSingleton<Map>
         public InvalidTileSizeException(string message): base(message){ }      
     }
 
-    public class InvalidTileIDException : Exception
-    {
-        public InvalidTileIDException(string message): base(message) { }
-    }
+
 }
 
 

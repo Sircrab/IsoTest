@@ -1,12 +1,13 @@
 fileFormatVersion: 2
 guid: 23e9b30d9df74ff43ae8c875e7104635
-timeCreated: 1467910314
+timeCreated: 1467914462
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: coarse_dirt
     21300002: coal_block
     21300004: cobblestone
+    21300006: glass_lime
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -53,7 +54,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: cobblestone
+    - name: coarse_dirt
       rect:
         serializedVersion: 2
         x: 0
@@ -68,7 +69,7 @@ TextureImporter:
         - {x: -16, y: -16}
         - {x: 16, y: -16}
         - {x: 16, y: 16}
-    - name: coal_block
+    - name: glass_lime
       rect:
         serializedVersion: 2
         x: 0
@@ -83,11 +84,26 @@ TextureImporter:
         - {x: -16, y: -16}
         - {x: 16, y: -16}
         - {x: 16, y: 16}
-    - name: coarse_dirt
+    - name: cobblestone
       rect:
         serializedVersion: 2
         x: 32
         y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: coal_block
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
         width: 32
         height: 32
       alignment: 9
