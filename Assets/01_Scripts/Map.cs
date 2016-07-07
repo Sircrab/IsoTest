@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System;
 
 public class Map : MonoSingleton<Map>
-{
-
+{ 
     [SerializeField]
     private MeshFilter m_meshFilter;
 
@@ -16,7 +15,6 @@ public class Map : MonoSingleton<Map>
     {
         set { m_tiles = value; }
     }
-
 
     public void MakeMap(Tile[][] tiles)
     {
@@ -49,7 +47,6 @@ public class Map : MonoSingleton<Map>
         m_meshFilter.mesh.uv = uvCoords;
         m_meshFilter.mesh.triangles = triangles;
         m_meshFilter.mesh.normals = normals;
-
     }
 
     private static Vector2[] CreateUVs(int tilesHeight, int tilesWidth, int verticesWidth, int numVertices)
@@ -60,7 +57,6 @@ public class Map : MonoSingleton<Map>
             for (int j = 0; j < tilesWidth; j++)
             {
                 //TODO: Find tile index and get correct UVs by corners
-
                 //Top left corner south
                 uvCoords[(i * verticesWidth + j) * 4 + 0 + 2] = new Vector2(0, 1);
                 //Top right corner west
@@ -72,7 +68,6 @@ public class Map : MonoSingleton<Map>
 
             }
         }
-
         return uvCoords;
     }
 
@@ -102,7 +97,6 @@ public class Map : MonoSingleton<Map>
                 triangles[triIndex++] = ((i + 1) * verticesWidth + j) * 4 + 0;             
                 triangles[triIndex++] = ((i + 1) * verticesWidth + j + 1) * 4 + 1;
                 triangles[triIndex++] = (i * verticesWidth + j + 1) * 4 + 3;
-
             }
         }
         return triangles;
@@ -112,8 +106,6 @@ public class Map : MonoSingleton<Map>
     {
         public InvalidTileSizeException(string message): base(message){ }      
     }
-
-	
 }
 
 
