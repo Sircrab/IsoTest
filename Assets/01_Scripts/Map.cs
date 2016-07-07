@@ -7,12 +7,24 @@ public class Map : MonoSingleton<Map>
     [SerializeField]
     private MeshFilter m_meshFilter;
 
+    [SerializeField]
+    private Sprite[] m_sprites;
+
     public const float tileSize = 5f;
 
     private Tile[][] m_tiles;
     public Tile[][] Tiles
     {
         set { m_tiles = value; }
+    }
+
+    public Sprite GetSpriteByID(int ID)
+    {
+        if(ID < 0 || ID >= m_sprites.Length)
+        {
+            throw new InvalidTileIDException("Invalid Tile ID");
+        }
+        return m_sprites[ID];
     }
 
     public void MakeMap(Tile[][] tiles)
@@ -51,22 +63,22 @@ public class Map : MonoSingleton<Map>
         m_meshFilter.mesh.normals = normals;
     }
 
-    private static Vector2[] CreateUVs(int tilesHeight, int tilesWidth, int verticesWidth, int numVertices)
+    private Vector2[] CreateUVs(int tilesHeight, int tilesWidth, int verticesWidth, int numVertices)
     {
         Vector2[] uvCoords = new Vector2[numVertices * 4];
         for (int i = 0; i < tilesHeight; i++)
         {
             for (int j = 0; j < tilesWidth; j++)
             {
-                //TODO: Find tile index and get correct UVs by corners
+                Sprite tileSprite = GetSpriteByID(m_tiles[i][j].id);
                 //Top left corner south
-                uvCoords[(i * verticesWidth + j) * 4 + 0 + 2] = new Vector2(0, 1);
+                uvCoords[(i * verticesWidth + j) * 4 + 0 + 2] = tileSprite.uv[1];
                 //Top right corner west
-                uvCoords[(i * verticesWidth + j + 1) * 4 + 3] = new Vector2(1, 1);
+                uvCoords[(i * verticesWidth + j + 1) * 4 + 3] = tileSprite.uv[2];
                 //Bottom left corner north
-                uvCoords[((i + 1) * verticesWidth + j) * 4 + 0] = new Vector2(0, 0);
+                uvCoords[((i + 1) * verticesWidth + j) * 4 + 0] = tileSprite.uv[3];
                 //Bottom right corner east
-                uvCoords[((i + 1) * verticesWidth + j + 1) * 4 + 1] = new Vector2(1, 0);
+                uvCoords[((i + 1) * verticesWidth + j + 1) * 4 + 1] = tileSprite.uv[0];
             }
         }
         return uvCoords;
@@ -106,6 +118,11 @@ public class Map : MonoSingleton<Map>
     public class InvalidTileSizeException : Exception
     {
         public InvalidTileSizeException(string message): base(message){ }      
+    }
+
+    public class InvalidTileIDException : Exception
+    {
+        public InvalidTileIDException(string message): base(message) { }
     }
 }
 
