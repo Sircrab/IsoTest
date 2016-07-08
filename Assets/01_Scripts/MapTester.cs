@@ -11,6 +11,10 @@ public class MapTester : MonoBehaviour {
             for(int j = 0; j < 3; j++)
             {
                 map[i][j] = new Tile();
+                if((j + i) % 2 == 0)
+                {
+                    map[i][j].id = 1;
+                }
             }
         }
         Map.instance.MakeMap(map);
