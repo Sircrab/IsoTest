@@ -106,8 +106,6 @@ public class Map : MonoSingleton<Map>
     {
         public InvalidTileSizeException(string message): base(message){ }      
     }
-
-
 }
 
 

@@ -1,7 +1,7 @@
 ﻿
 using NUnit.Framework;
 using UnityEngine;
-
+using System;
 
 [TestFixture()]
 public class SpriteHolderTest
@@ -31,6 +31,6 @@ public class SpriteHolderTest
         Sprite[] sprites = new Sprite[] { new Sprite(), null, new Sprite() };
         instance.Sprites = sprites;
 
-        Assert.Throws<SpriteHolder.NullTileException>(() => instance.GetSpriteByID(1));
+        Assert.Throws<NullReferenceException>(() => instance.GetSpriteByID(1));
     }
 }
