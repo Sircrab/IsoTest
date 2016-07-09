@@ -16,7 +16,7 @@ public class SpriteHolder : MonoSingleton<SpriteHolder> {
         {
             throw new InvalidTileIDException("Invalid Tile ID");
         }
-        if(m_sprites[ID] == null)
+        if (m_sprites[ID] == null)
         {
             throw new NullTileException("Tile is not correctly set in array");
         }
