@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System;
 
-public class SpriteHolder : MonoSingleton<SpriteHolder> {
-
+public class SpriteHolder : MonoSingleton<SpriteHolder>
+{
     [SerializeField]
     private Sprite[] m_sprites;
+
     public Sprite[] Sprites
     {
         set { m_sprites = value; }

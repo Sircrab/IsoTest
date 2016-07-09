@@ -3,13 +3,13 @@ using System.Linq;
 using System;
 
 public class Map : MonoSingleton<Map>
-{ 
-    [SerializeField]
-    private MeshFilter m_meshFilter;
-
+{
     public const float tileSize = 5f;
 
+    [SerializeField]
+    private MeshFilter m_meshFilter;
     private Tile[][] m_tiles;
+
     public Tile[][] Tiles
     {
         set { m_tiles = value; }
@@ -20,7 +20,7 @@ public class Map : MonoSingleton<Map>
         if (tiles == null 
             || tiles.Any(x => x == null) 
             || tiles.Any(x => x.Length <= 0) 
-            || Array.Exists<Tile[]>(tiles, x => x.Length != tiles[0].Length))
+            || Array.Exists(tiles, x => x.Length != tiles[0].Length))
         {
             throw new InvalidTileSizeException("Tiles array must be non-empty rectangular shaped");
         }
