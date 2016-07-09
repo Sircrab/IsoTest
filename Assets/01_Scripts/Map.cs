@@ -36,7 +36,8 @@ public class Map : MonoSingleton<Map>
         {
             for (int j = 0; j < 4; j++)
             {
-                mapVertices[i * 4 + j] = new Vector3(i % verticesWidth * tileSize, 0, i / verticesWidth * tileSize);
+                mapVertices[i * 4 + j] = 
+                    new Vector3(i % verticesWidth * tileSize, 0, i / verticesWidth * tileSize);
             }
 
         }
