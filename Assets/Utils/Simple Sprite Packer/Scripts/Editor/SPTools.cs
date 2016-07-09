@@ -612,7 +612,9 @@ namespace SimpleSpritePackerEditor
 			bool replaceAtlas = (replaceMode == SPReferenceReplacerWindow.ReplaceMode.AtlasWithSource);
 			
 			// Grab the current scene name
+#pragma warning disable CS0618 // Type or member is obsolete
 			string startingScene = EditorApplication.currentScene;
+
 			
 			// Get all scene names
 			string[] sceneNames = SPTools.GetAllScenesNames();
@@ -645,9 +647,9 @@ namespace SimpleSpritePackerEditor
 			
 			// Load back the original scene
 			EditorApplication.OpenScene(startingScene);
-			
-			// Return the replaced references count
-			return count;
+#pragma warning restore CS0618 // Type or member is obsolete
+            // Return the replaced references count
+            return count;
 		}
 		
 		/// <summary>
