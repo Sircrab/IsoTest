@@ -39,7 +39,6 @@ public class Map : MonoSingleton<Map>
                 mapVertices[i * 4 + j] = 
                     new Vector3(i % verticesWidth * tileSize, 0, i / verticesWidth * tileSize);
             }
-
         }
         int[] triangles = CreateTriangles(verticesWidth, verticesHeight);
         Vector3[] normals = CreateNormals(numVertices);
