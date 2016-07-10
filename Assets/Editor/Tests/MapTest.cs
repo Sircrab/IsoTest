@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System.Linq;
 
 [TestFixture()]
 public class MapTest
@@ -8,7 +7,7 @@ public class MapTest
     [SetUp()]
     public void Init()
     {
-        instance = Map.instance;
+        instance = new Map();
     }
 
     [Test()]
@@ -20,11 +19,11 @@ public class MapTest
     [Test()]
     public void MapMake_throwsException_onJaggedArray()
     {
-        Tile[][][] tiles = new Tile[1][][];
-        tiles[0][0] = new Tile[3];
-        tiles[0][1] = new Tile[2];
-        tiles[0][2] = new Tile[4];
+        Tile[][] tiles = new Tile[3][];
+        tiles[0] = new Tile[3];
+        tiles[1] = new Tile[2];
+        tiles[2] = new Tile[4];
 
-        Assert.Throws<Map.InvalidTileSizeException>(() => instance.MakeMap(tiles));
+        Assert.Throws<Map.InvalidTileSizeException>(() => instance.MakeMap(tiles,0));
     }
 }

@@ -25,6 +25,17 @@ public class MapTester : MonoBehaviour {
                 }
             }
         }
-        Map.instance.MakeMap(map);
+        ChunkSet c = ChunkSet.NewBuilder()
+                             .Add(map)
+                             .Add(map)
+                             .Add(map)
+                             .Add(map)
+                             .Add(map)
+                             .Add(map)
+                             .Add(map)
+                             .Add(map)
+                             .Add(map)
+                             .Build();
+        MapManager.instance.Reload(c);
 	}
 }
