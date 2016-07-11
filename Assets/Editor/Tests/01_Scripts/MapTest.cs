@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using UnityEngine;
 
 [TestFixture()]
 public class MapTest
@@ -7,7 +8,7 @@ public class MapTest
     [SetUp()]
     public void Init()
     {
-        instance = new Map();
+        
     }
 
     [Test()]
