@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using SimpleSpritePacker;
+using UnityEditor.SceneManagement;
 
 namespace SimpleSpritePackerEditor
 {
@@ -159,9 +160,7 @@ namespace SimpleSpritePackerEditor
 					{
 						replacedCount += SPTools.ReplaceReferencesInProject(this.m_Instance.copyOfSprites, this.m_ReplaceMode, spriteRenderersOnly);
 						replacedCount += SPTools.ReplaceReferencesInScene(this.m_Instance.copyOfSprites, this.m_ReplaceMode, spriteRenderersOnly);
-#pragma warning disable CS0618 // Type or member is obsolete
-						EditorApplication.SaveScene();
-#pragma warning restore CS0618 // Type or member is obsolete
+						EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());
 						replacedCount += SPTools.ReplaceReferencesInAllScenes(this.m_Instance.copyOfSprites, this.m_ReplaceMode, spriteRenderersOnly, true);
 						break;
 					}
