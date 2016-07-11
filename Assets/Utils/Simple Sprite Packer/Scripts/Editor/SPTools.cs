@@ -3,6 +3,8 @@ using UnityEditor;
 using System.Collections.Generic;
 using System.Reflection;
 using SimpleSpritePacker;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 namespace SimpleSpritePackerEditor
 {
@@ -612,8 +614,7 @@ namespace SimpleSpritePackerEditor
 			bool replaceAtlas = (replaceMode == SPReferenceReplacerWindow.ReplaceMode.AtlasWithSource);
 			
 			// Grab the current scene name
-#pragma warning disable CS0618 // Type or member is obsolete
-			string startingScene = EditorApplication.currentScene;
+			string startingScene = EditorSceneManager.GetActiveScene().name;
 
 			
 			// Get all scene names
@@ -627,27 +628,26 @@ namespace SimpleSpritePackerEditor
 				// Check if we should skip the scene
 				if (skipCurrent && sceneName.Equals(startingScene))
 					continue;
-				
-				// Try opening the scene
-				if (EditorApplication.OpenScene(sceneName))
+
+                // Try opening the scene
+                Scene scene = EditorSceneManager.OpenScene(sceneName);
+
+				Component[] comps = Object.FindObjectsOfType<Component>();
+					
+				foreach (SPSpriteInfo spriteInfo in spriteInfoList)
 				{
-					Component[] comps = Object.FindObjectsOfType<Component>();
-					
-					foreach (SPSpriteInfo spriteInfo in spriteInfoList)
-					{
-						if (spriteInfo.source == null || !(spriteInfo.source is Sprite) || spriteInfo.targetSprite == null)
-							continue;
+					if (spriteInfo.source == null || !(spriteInfo.source is Sprite) || spriteInfo.targetSprite == null)
+						continue;
 						
-						count += SPTools.ReplaceReferences(comps, (replaceAtlas ? spriteInfo.targetSprite : (spriteInfo.source as Sprite)), (replaceAtlas ? (spriteInfo.source as Sprite) : spriteInfo.targetSprite), spriteRenderersOnly);
-					}
-					
-					EditorApplication.SaveScene();
+					count += SPTools.ReplaceReferences(comps, (replaceAtlas ? spriteInfo.targetSprite : (spriteInfo.source as Sprite)), (replaceAtlas ? (spriteInfo.source as Sprite) : spriteInfo.targetSprite), spriteRenderersOnly);
 				}
+
+                EditorSceneManager.SaveScene(scene);
+
 			}
 			
 			// Load back the original scene
-			EditorApplication.OpenScene(startingScene);
-#pragma warning restore CS0618 // Type or member is obsolete
+			EditorSceneManager.OpenScene(startingScene);
             // Return the replaced references count
             return count;
 		}
