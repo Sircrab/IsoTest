@@ -12,7 +12,11 @@ public class MapManager : MonoSingleton<MapManager>
         for (int i = 0; i < m_maps.Length; i++ )
         {
             m_maps[i].MakeMap(chunk.m_tiles[i]);
-            m_maps[i].transform.position = new Vector3(( i / 3 ) * m_maps[i].WorldWidth, 0, ( i % 3 ) * m_maps[i].WorldHeight);
+            m_maps[i].transform.position = 
+                new Vector3(
+                    ( i / 3 ) * m_maps[i].controller.WorldWidth, 
+                    0, 
+                    ( i % 3 ) * m_maps[i].controller.WorldHeight);
         }
     }
 }
