@@ -5,6 +5,7 @@ using System;
 public class ChunkSet
 {
     public List<Tile[][][]> m_tiles;
+    public const int TOTAL_TILESETS = 9;
 
     private ChunkSet(List<Tile[][][]> tiles)
     {
@@ -39,7 +40,7 @@ public class ChunkSet
 
         public ChunkSet Build()
         {
-            if (tiles.Count == 9)
+            if (tiles.Count == TOTAL_TILESETS)
             {
                 if (tiles.Any(x => x== null) )
                 {
@@ -51,7 +52,9 @@ public class ChunkSet
                 });
                 return new ChunkSet(tiles);
             }
-            throw new InvalidTilesetCountException(string.Format("Expected 9 tilesets, found %d while building.", tiles.Count));
+            throw new InvalidTilesetCountException(
+                string.Format(
+                    "Expected %d tilesets, found %d while building.", TOTAL_TILESETS, tiles.Count));
         }
         
         public class InvalidTilesetCountException: Exception

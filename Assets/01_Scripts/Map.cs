@@ -138,9 +138,12 @@ public class Map : MonoBehaviour
 
     private void DestroyChildrenGameObjects()
     {
-        foreach (Transform t in transform)
+        if (transform != null)
         {
-            Destroy(t.gameObject);
+            foreach (Transform t in transform)
+            {
+                Destroy(t.gameObject);
+            }
         }
     }
 
