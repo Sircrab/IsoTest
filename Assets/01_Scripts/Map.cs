@@ -1,28 +1,27 @@
 ﻿using UnityEngine;
 using System.Linq;
 using System;
-using System.Collections.Generic;
 
 public class Map : MonoBehaviour
 {
-    [SerializeField]
-    private Material m_material;
     public const float c_tileSize = 1f;
     public const float c_tileHeight = 0.5f;
 
+    [SerializeField]
+    private Material m_material;
+    private Tile[][] m_tiles;
     private float m_worldWidth = 0f;
+    private float m_worldHeight = 0f;
+
     public float WorldWidth
     {
         get { return m_worldWidth; }
     }
 
-    private float m_worldHeight = 0f;
     public float WorldHeight
     {
         get { return m_worldHeight; }
     }
-
-    private Tile[][] m_tiles;
 
     public Tile[][] Tiles
     {
