@@ -2,10 +2,11 @@
 using System.Linq;
 using System;
 
-public class Map : MonoBehaviour
+public class Map : MonoBehaviour, IMeshCreator
 {
     public const float c_tileSize = 1f;
     public const float c_tileHeight = 0.5f;
+    public MapController controller;
 
     [SerializeField]
     private Material m_material;
@@ -26,6 +27,11 @@ public class Map : MonoBehaviour
     public Tile[][] Tiles
     {
         set { m_tiles = value; }
+    }
+
+    public void OnEnable()
+    {
+        controller.SetMeshCreator(this);
     }
 
     public void MakeMap(Tile[][][] tiles)
@@ -62,13 +68,24 @@ public class Map : MonoBehaviour
         Vector3[] normals = CreateNormals(numVertices);
         Vector2[] uvCoords = CreateUVs(tilesHeight, tilesWidth, verticesWidth, numVertices);
 
-        SetMeshFilterProperties(
-            CreateChildMeshHolder().GetComponent<MeshFilter>(), 
+        CreateMeshFilterWithProperties(
             mapVertices, 
             uvCoords, 
             triangles, 
             normals);
     }
+     
+    #region IMeshCreator implementation
+    public void CreateMeshFilterWithProperties(
+        Vector3[] vertices, Vector2[] uvCoords, int[] triangles, Vector3[] normals)
+    {
+        MeshFilter subMesh = CreateChildMeshHolder().GetComponent<MeshFilter>();
+        subMesh.mesh.vertices = vertices;
+        subMesh.mesh.uv = uvCoords;
+        subMesh.mesh.triangles = triangles;
+        subMesh.mesh.normals = normals;
+    }
+    #endregion
 
     private static Vector3[] CreateVertices(int y, int verticesWidth, int numVertices)
     {
@@ -118,13 +135,6 @@ public class Map : MonoBehaviour
         return triangles;
     }
 
-    private static void SetMeshFilterProperties(MeshFilter subMesh, Vector3[] vertices, Vector2[] uvCoords, int[] triangles, Vector3[] normals)
-    {
-        subMesh.mesh.vertices = vertices;
-        subMesh.mesh.uv = uvCoords;
-        subMesh.mesh.triangles = triangles;
-        subMesh.mesh.normals = normals;
-    }
 
     private Vector2[] CreateUVs(int tilesHeight, int tilesWidth, int verticesWidth, int numVertices)
     {
