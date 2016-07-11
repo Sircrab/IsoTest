@@ -30,12 +30,7 @@ public class Map : MonoBehaviour
 
     public void MakeMap(Tile[][][] tiles)
     {
-        //Delete old meshes
-        foreach(Transform t in transform )
-        {
-            Destroy(t.gameObject);
-        }
-
+        DestroyChildrenGameObjects();
         //Process all of the meshes here
         for (int i = 0; i < tiles.Length; i++)
         {
@@ -139,6 +134,14 @@ public class Map : MonoBehaviour
             }
         }
         return triangles;
+    }
+
+    private void DestroyChildrenGameObjects()
+    {
+        foreach (Transform t in transform)
+        {
+            Destroy(t.gameObject);
+        }
     }
 
     public class InvalidTileSizeException : Exception
