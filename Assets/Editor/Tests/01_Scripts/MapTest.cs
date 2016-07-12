@@ -3,7 +3,7 @@ using NSubstitute;
 using UnityEngine;
 
 [TestFixture()]
-public class MapTest
+public class MapControllerTest
 {
     private MapController mapController;
     private IMeshCreator meshCreator;
@@ -58,15 +58,14 @@ public class MapTest
         }
 
         mapController.MakeMap(tiles, 0);
+
+        meshCreator.Received().CreateMeshFilterWithProperties(
+            Arg.Any<Vector3[]>(), Arg.Any<Vector2[]>(), Arg.Any<int[]>(), Arg.Any<Vector3[]>());
     }
 
     private IMeshCreator GetMeshCreatorMock()
     {
-        IMeshCreator meshCreator = Substitute.For<IMeshCreator>();
-        meshCreator.When(x => x.CreateMeshFilterWithProperties(
-            Arg.Any<Vector3[]>(), Arg.Any<Vector2[]>(), Arg.Any<int[]>(), Arg.Any<Vector3[]>()))
-                   .Do(x => { });
-        return meshCreator;
+        return Substitute.For<IMeshCreator>();
     }
 
     private MapController GetMapControllerMock()
@@ -77,14 +76,14 @@ public class MapTest
     private ISpriteDictionary GetSpriteDictionaryMock()
     {
         ISpriteDictionary spriteDictionary = Substitute.For<ISpriteDictionary>();
-        spriteDictionary.GetSpriteByID(Arg.Any<int>()).Returns(new Sprite());
+        spriteDictionary.GetSpriteByID(Arg.Any<int>()).Returns(GetDummySprite());
         return spriteDictionary;
     }
 
     private Sprite GetDummySprite()
     {
-        Sprite sprite = new Sprite();
-        sprite.uv[0] = sprite.uv[1] = sprite.uv[2] = sprite.uv[3] = new Vector2(0, 0);
+        Sprite sprite = 
+            Sprite.Create(Texture2D.blackTexture, Rect.MinMaxRect(0, 0, 1, 1), new Vector2(0.5f, 0.5f));
         return sprite;
     }
 }
