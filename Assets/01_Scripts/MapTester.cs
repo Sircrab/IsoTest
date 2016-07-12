@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class MapTester : MonoBehaviour {
+public class MapTester : MonoBehaviour
+{
 	// Use this for initialization
 	void Start ()
     {
