@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-public class SpriteHolder : MonoSingleton<SpriteHolder>
+public class SpriteHolder : MonoSingleton<SpriteHolder>, ISpriteDictionary
 {
     [SerializeField]
     private Sprite[] m_sprites;
@@ -11,6 +11,7 @@ public class SpriteHolder : MonoSingleton<SpriteHolder>
         set { m_sprites = value; }
     }
 
+    #region ISpriteDictionary implementation
     public Sprite GetSpriteByID(int ID)
     {
         if (ID < 0 || ID >= m_sprites.Length)
@@ -23,6 +24,7 @@ public class SpriteHolder : MonoSingleton<SpriteHolder>
         }
         return m_sprites[ID];
     }
+    #endregion  
 
     public class InvalidTileIDException : Exception
     {

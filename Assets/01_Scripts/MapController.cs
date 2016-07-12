@@ -15,6 +15,8 @@ public class MapController
 
     private IMeshCreator meshCreator;
     private IChildrenManager childrenManager;
+    private ISpriteDictionary spriteDictionary;
+
     private Tile[][] m_tiles;
     private float m_worldWidth = 0f;
     private float m_worldHeight = 0f;
@@ -78,6 +80,11 @@ public class MapController
         this.childrenManager = childrenManager;
     }
 
+    public void SetSpriteDictionary(ISpriteDictionary spriteDictionary)
+    {
+        this.spriteDictionary = spriteDictionary;
+    }
+
     private static Vector3[] CreateVertices(int y, int verticesWidth, int numVertices)
     {
         Vector3[] mapVertices = new Vector3[numVertices * 4];
@@ -133,7 +140,7 @@ public class MapController
         {
             for (int j = 0; j < tilesWidth; j++)
             {
-                Sprite tileSprite = SpriteHolder.instance.GetSpriteByID(m_tiles[i][j].id);
+                Sprite tileSprite = spriteDictionary.GetSpriteByID(m_tiles[i][j].id);
                 //Top left corner south
                 uvCoords[(i * verticesWidth + j) * 4 + 0 + 2] = tileSprite.uv[1];
                 //Top right corner west

@@ -12,6 +12,7 @@ public class Map : MonoBehaviour, IMeshCreator, IChildrenManager
     {
         controller.SetMeshCreator(this);
         controller.SetChildrenManager(this);
+        controller.SetSpriteDictionary(SpriteHolder.instance);
     }
 
     public void MakeMap(Tile[][][] tiles)
