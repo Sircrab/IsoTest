@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 23e9b30d9df74ff43ae8c875e7104635
-timeCreated: 1467914462
+timeCreated: 1468268791
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,8 @@ TextureImporter:
     21300002: coal_block
     21300004: cobblestone
     21300006: glass_lime
+    21300008: daylight_detector_top
+    21300010: bed_head_end
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
