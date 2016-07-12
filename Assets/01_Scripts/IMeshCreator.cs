@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 public interface IMeshCreator
 {
     void CreateMeshFilterWithProperties(
