@@ -60,7 +60,7 @@ public class MapControllerTest
         mapController.MakeMap(tiles, 0);
 
         meshCreator.Received().CreateMeshFilterWithProperties(
-            Arg.Any<Vector3[]>(), Arg.Any<Vector2[]>(), Arg.Any<int[]>(), Arg.Any<Vector3[]>());
+            Arg.Any<Vector3[]>(), Arg.Any<Vector2[]>(), Arg.Any<int[]>(), Arg.Any<Vector3[]>(), Arg.Any<int>());
     }
 
     private IMeshCreator GetMeshCreatorMock()

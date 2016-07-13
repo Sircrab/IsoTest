@@ -67,7 +67,8 @@ public class MapController
             mapVertices,
             uvCoords,
             triangles,
-            normals);
+            normals,
+            y);
     }
 
     public void SetMeshCreator(IMeshCreator meshCreator)

@@ -27,9 +27,9 @@ public class Map : MonoBehaviour, IMeshCreator, IChildrenManager
      
     #region IMeshCreator implementation
     public void CreateMeshFilterWithProperties(
-        Vector3[] vertices, Vector2[] uvCoords, int[] triangles, Vector3[] normals)
+        Vector3[] vertices, Vector2[] uvCoords, int[] triangles, Vector3[] normals, int level)
     {
-        MeshFilter subMesh = CreateChildMeshHolder().GetComponent<MeshFilter>();
+        MeshFilter subMesh = CreateChildMeshHolder(level).GetComponent<MeshFilter>();
         subMesh.mesh.vertices = vertices;
         subMesh.mesh.uv = uvCoords;
         subMesh.mesh.triangles = triangles;
@@ -47,9 +47,10 @@ public class Map : MonoBehaviour, IMeshCreator, IChildrenManager
     }
     #endregion
 
-    private GameObject CreateChildMeshHolder()
+    private GameObject CreateChildMeshHolder(int level)
     {
         GameObject meshHolder = new GameObject();
+        meshHolder.name = level.ToString();
         meshHolder.AddComponent<MeshFilter>();
         MeshRenderer renderer = meshHolder.AddComponent<MeshRenderer>();
         renderer.material = m_material;
