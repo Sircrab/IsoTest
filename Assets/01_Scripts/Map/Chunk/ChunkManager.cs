@@ -55,8 +55,8 @@ public class ChunkManager
                         }
                         if (chunk != null )
                         {
-                            chunk.m_tiles[i][j % Chunk.c_chunkHeight][k % Chunk.c_chunkWidth] 
-                                = map[i][j][k];
+                            chunk.m_tiles[i][j % Chunk.c_chunkHeight][k % Chunk.c_chunkWidth] = 
+                                map[i][j][k];
                         }
                     }
                 }
