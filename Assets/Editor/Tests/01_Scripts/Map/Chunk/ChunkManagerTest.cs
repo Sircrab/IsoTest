@@ -1,4 +1,8 @@
 ﻿using NUnit.Framework;
+
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+
 using Zenject;
 
 [TestFixture]
@@ -18,7 +22,7 @@ public class ChunkManagerTest
     [Test]
     public void Nothing()
     {
-        // manager is usable here now
+        // manager can be used here
     }
 }
 

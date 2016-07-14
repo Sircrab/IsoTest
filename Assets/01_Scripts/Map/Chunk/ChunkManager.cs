@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 
+using Zenject;
+
 public class ChunkManager
 {
     public class InvalidMapSizeException : Exception
@@ -24,7 +26,13 @@ public class ChunkManager
 
     private static string baseFolder = Application.dataPath;
 
-    public IFormatter formatter;
+    private IFormatter formatter;
+
+    [Inject]
+    public ChunkManager(IFormatter formatter)
+    {
+        this.formatter = formatter;
+    }
 
     public void Chunkify(Tile[][][] map)
     {

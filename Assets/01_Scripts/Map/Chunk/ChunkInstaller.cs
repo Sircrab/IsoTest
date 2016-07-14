@@ -7,7 +7,7 @@ public class ChunkInstaller : Installer
 {
     public override void InstallBindings()
     {
+        Container.Bind<IFormatter>().To<BinaryFormatter>().FromInstance(new BinaryFormatter()).AsSingle();
         Container.Bind<ChunkManager>().AsSingle();
-        Container.Bind<IFormatter>().To<BinaryFormatter>().AsSingle();
     }
 }
