@@ -3,7 +3,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 
 public class ChunkManager
 {
@@ -24,9 +23,10 @@ public class ChunkManager
     }
 
     private static string baseFolder = Application.dataPath;
-    private static IFormatter formatter = new BinaryFormatter();
 
-    public static void Chunkify(Tile[][][] map)
+    public IFormatter formatter;
+
+    public void Chunkify(Tile[][][] map)
     {
         //TODO: Get rid of this hardcoded path pls
         string finalPath = baseFolder + @"\Chunks";
@@ -64,7 +64,7 @@ public class ChunkManager
         }
     }
 
-    private static void SaveChunks(ICollection<Chunk> chunks, String saveDirectory)
+    private void SaveChunks(ICollection<Chunk> chunks, String saveDirectory)
     {
         foreach (Chunk chunk in chunks)
         {
@@ -72,7 +72,7 @@ public class ChunkManager
         }
     }
 
-    private static void SaveChunk(Chunk chunk, String saveDirectory)
+    private void SaveChunk(Chunk chunk, String saveDirectory)
     {
         Stream stream = new FileStream(
                 saveDirectory + @"\" + chunk.row.ToString() + "_" + chunk.col.ToString() + ".dat",
@@ -83,7 +83,7 @@ public class ChunkManager
         stream.Close();
     }
 
-    private static Chunk LoadChunk(int row, int column)
+    private Chunk LoadChunk(int row, int column)
     {
         string finalPath = baseFolder + @"\Chunks";
         Chunk chunk = null;
