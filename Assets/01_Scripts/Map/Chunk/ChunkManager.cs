@@ -53,7 +53,7 @@ public class ChunkManager
                             chunks[accessPair].row = accessPair.x;
                             chunks[accessPair].col = accessPair.y;                      
                         }
-                        if (chunk != null )
+                        if (chunk != null)
                         {
                             chunk.m_tiles[i][j % Chunk.c_chunkHeight][k % Chunk.c_chunkWidth] = 
                                 map[i][j][k];
@@ -63,7 +63,7 @@ public class ChunkManager
             }
         }
 
-        foreach (Chunk chunk in chunks.Values )
+        foreach (Chunk chunk in chunks.Values)
         {
             //TODO: hardcoded path
             Stream stream = new FileStream(
