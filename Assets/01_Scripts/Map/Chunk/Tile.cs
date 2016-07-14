@@ -13,6 +13,15 @@ public class Tile : IComparable, ITile
         get { return id; }
         set { id = value; }
     }
+    
+    public Tile() { }
+
+    public Tile(int x, int y, int z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
 
     public int CompareTo(object obj)
     {

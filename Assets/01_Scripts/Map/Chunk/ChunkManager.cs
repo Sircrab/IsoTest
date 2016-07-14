@@ -80,7 +80,7 @@ public class ChunkManager
         {
             chunk = (Chunk)formatter.Deserialize(stream);
         }
-        catch (SerializationException e)
+        catch (SerializationException)
         {
             Debug.LogError("Critical serialization error");
         }
