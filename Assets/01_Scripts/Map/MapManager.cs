@@ -16,7 +16,7 @@ public class MapManager : MonoSingleton<MapManager>
             for (int j = 0; j < mapColumns; j++ )
             {
                 int idx = i * mapRows + j;
-                m_maps[idx].MakeMap(chunk.m_tiles[idx]);
+                m_maps[idx].MakeMap(chunk.m_chunks[idx].m_tiles);
                 m_maps[idx].transform.position =
                     new Vector3(
                         i * m_maps[idx].controller.WorldWidth,

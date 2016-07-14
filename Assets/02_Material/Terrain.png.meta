@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 23e9b30d9df74ff43ae8c875e7104635
-timeCreated: 1468268791
+timeCreated: 1468454311
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,9 @@ TextureImporter:
     21300006: glass_lime
     21300008: daylight_detector_top
     21300010: bed_head_end
+    21300012: hardened_clay_stained_black
+    21300014: glass_blue
+    21300016: destroy_stage_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -56,10 +59,72 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: coarse_dirt
+    - name: hardened_clay_stained_black
       rect:
         serializedVersion: 2
         x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: cobblestone
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: destroy_stage_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 3}
+        - {x: -3, y: -1}
+        - {x: -2, y: -4}
+        - {x: 4, y: -4}
+        - {x: 4, y: 1}
+        - {x: 0, y: 3}
+    - name: coal_block
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+    - name: coarse_dirt
+      rect:
+        serializedVersion: 2
+        x: 64
         y: 0
         width: 32
         height: 32
@@ -74,7 +139,7 @@ TextureImporter:
     - name: glass_lime
       rect:
         serializedVersion: 2
-        x: 0
+        x: 64
         y: 32
         width: 32
         height: 32
@@ -86,26 +151,11 @@ TextureImporter:
         - {x: -16, y: -16}
         - {x: 16, y: -16}
         - {x: 16, y: 16}
-    - name: cobblestone
+    - name: glass_blue
       rect:
         serializedVersion: 2
-        x: 32
+        x: 96
         y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
-    - name: coal_block
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
         width: 32
         height: 32
       alignment: 9

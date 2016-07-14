@@ -53,7 +53,7 @@ public class MapControllerTest
             for (int j = 0; j < tileSize; j++)
             {
                 tiles[i][j] = new Tile();
-                tiles[i][j].id = 0;
+                tiles[i][j].ID = 0;
             }
         }
 

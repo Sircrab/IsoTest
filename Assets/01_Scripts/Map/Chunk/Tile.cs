@@ -1,11 +1,18 @@
 ﻿using System;
 
 [System.Serializable]
-public class Tile : IComparable
-{ 
+public class Tile : IComparable, ITile
+{
+    public const int c_emptyTileID = 0;
     //y is height, x is column, z is row
     public int x, y, z;
-    public int id = 0;
+    private int id = 0;
+    
+    public virtual int ID
+    {
+        get { return id; }
+        set { id = value; }
+    }
 
     public int CompareTo(object obj)
     {
@@ -24,5 +31,10 @@ public class Tile : IComparable
             return z.CompareTo(other.z);
         }
         return y.CompareTo(other.y);    
+    }
+
+    public virtual bool IsEmpty()
+    {
+        return false;
     }
 }

@@ -10,8 +10,8 @@ public class ChunkSetTest
     {
         Assert.Throws<ChunkSet.ChunkSetBuilder.InvalidTilesetCountException>(
             () => ChunkSet.NewBuilder()
-                          .Add(new Tile[1][][])
-                          .Add(new Tile[1][][])
+                          .Add(new Chunk(new Tile[1][][]))
+                          .Add(new Chunk(new Tile[1][][]))
                           .Build(), 
             "found 2");
     }
@@ -23,7 +23,7 @@ public class ChunkSetTest
         ChunkSet.ChunkSetBuilder builder = ChunkSet.NewBuilder();
         for (int i = 0; i < numTilesets; i++)
         {
-            builder.Add(new Tile[1][][]);
+            builder.Add(new Chunk(new Tile[1][][]));
         }
 
         Assert.Throws<ChunkSet.ChunkSetBuilder.InvalidTilesetCountException>(

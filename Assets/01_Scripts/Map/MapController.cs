@@ -141,7 +141,7 @@ public class MapController
         {
             for (int j = 0; j < tilesWidth; j++)
             {
-                Sprite tileSprite = spriteDictionary.GetSpriteByID(m_tiles[i][j].id);
+                Sprite tileSprite = spriteDictionary.GetSpriteByID(m_tiles[i][j].ID);
                 //Top left corner south
                 uvCoords[(i * verticesWidth + j) * 4 + 0 + 2] = tileSprite.uv[1];
                 //Top right corner west
