@@ -1,11 +1,14 @@
 ﻿using System;
 
-[System.Serializable]
+[Serializable]
 public class Tile : IComparable, ITile
 {
     public const int c_emptyTileID = 0;
     //y is height, x is column, z is row
-    public int x, y, z;
+    public int x;
+    public int y;
+    public int z;
+
     private int id = 0;
     
     public virtual int ID
