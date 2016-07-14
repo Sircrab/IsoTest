@@ -108,7 +108,7 @@ public class ChunkManager
             }
             if(map[i][0].Length % Chunk.c_chunkWidth != 0 )
             {
-                throw new InvalidMapSizeException(String.Format("MAp has invalid width, must be divisible by %d", Chunk.c_chunkWidth));
+                throw new InvalidMapSizeException(String.Format("Map has invalid width, must be divisible by %d", Chunk.c_chunkWidth));
             }
         }
     }
