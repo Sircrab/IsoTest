@@ -30,6 +30,4 @@ public class SpriteHolder : MonoSingleton<SpriteHolder>, ISpriteDictionary
         return m_sprites[ID];
     }
     #endregion  
-
-
 }
