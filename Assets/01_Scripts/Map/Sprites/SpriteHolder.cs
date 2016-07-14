@@ -3,6 +3,11 @@ using System;
 
 public class SpriteHolder : MonoSingleton<SpriteHolder>, ISpriteDictionary
 {
+    public class InvalidTileIDException : Exception
+    {
+        public InvalidTileIDException(string message) : base(message) { }
+    }
+
     [SerializeField]
     private Sprite[] m_sprites;
 
@@ -26,8 +31,5 @@ public class SpriteHolder : MonoSingleton<SpriteHolder>, ISpriteDictionary
     }
     #endregion  
 
-    public class InvalidTileIDException : Exception
-    {
-        public InvalidTileIDException(string message) : base(message) { }
-    }
+
 }
