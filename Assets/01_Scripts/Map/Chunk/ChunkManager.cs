@@ -54,7 +54,8 @@ public class ChunkManager
                         }
                         if (chunk != null )
                         {
-                            chunk.m_tiles[i][j % Chunk.c_chunkHeight][k % Chunk.c_chunkWidth] = map[i][j][k];
+                            chunk.m_tiles[i][j % Chunk.c_chunkHeight][k % Chunk.c_chunkWidth] 
+                                = map[i][j][k];
                         }
                     }
                 }
@@ -64,7 +65,11 @@ public class ChunkManager
         foreach (Chunk chunk in chunks.Values )
         {
             //TODO: hardcoded path
-            Stream stream = new FileStream(finalPath + @"\" + chunk.row.ToString() + "_" + chunk.col.ToString() + ".dat", FileMode.Create, FileAccess.Write, FileShare.None);
+            Stream stream = new FileStream(
+                finalPath + @"\" + chunk.row.ToString() + "_" + chunk.col.ToString() + ".dat", 
+                FileMode.Create, 
+                FileAccess.Write, 
+                FileShare.None);
             formatter.Serialize(stream, chunk);
             stream.Close();
         }
@@ -74,7 +79,9 @@ public class ChunkManager
     {
         string finalPath = baseFolder + @"\Chunks";
         IFormatter formatter = new BinaryFormatter();
-        Stream stream = new FileStream(finalPath + @"\" + row.ToString() + "_" + column.ToString() + ".dat", FileMode.Open);
+        Stream stream = new FileStream(
+            finalPath + @"\" + row.ToString() + "_" + column.ToString() + ".dat", 
+            FileMode.Open);
         Chunk chunk = null;
         try
         {
