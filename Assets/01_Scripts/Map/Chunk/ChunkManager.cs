@@ -24,13 +24,13 @@ public class ChunkManager
     }
 
     private static string baseFolder = Application.dataPath;
+    private static IFormatter formatter = new BinaryFormatter();
 
     public static void Chunkify(Tile[][][] map)
     {
         //TODO: Get rid of this hardcoded path pls
         string finalPath = baseFolder + @"\Chunks";
         Directory.CreateDirectory(Path.GetDirectoryName(finalPath));
-        IFormatter formatter = new BinaryFormatter();
         ValidateSize(ref map);
         int mapHeight = map[0].Length;
         int mapWidth = map[0][0].Length;
@@ -38,7 +38,7 @@ public class ChunkManager
 
         for (int i = map.Length - 1 ; i >= 0; i-- )
         {
-            for (int j = 0; j < mapHeight; j++ )
+            for (int j = 0; j < mapHeight; j++ )    
             {
                 for (int k = 0; k < mapWidth; k++ )
                 {
@@ -62,39 +62,50 @@ public class ChunkManager
                 }
             }
         }
+    }
 
-        foreach (Chunk chunk in chunks.Values)
+    private static void SaveChunks(ICollection<Chunk> chunks, String saveDirectory)
+    {
+        foreach (Chunk chunk in chunks)
         {
-            //TODO: hardcoded path
-            Stream stream = new FileStream(
-                finalPath + @"\" + chunk.row.ToString() + "_" + chunk.col.ToString() + ".dat", 
-                FileMode.Create, 
-                FileAccess.Write, 
-                FileShare.None);
-            formatter.Serialize(stream, chunk);
-            stream.Close();
+            SaveChunk(chunk, saveDirectory);
         }
     }
 
-    private static Chunk GetChunk(int row, int column)
+    private static void SaveChunk(Chunk chunk, String saveDirectory)
+    {
+        Stream stream = new FileStream(
+                saveDirectory + @"\" + chunk.row.ToString() + "_" + chunk.col.ToString() + ".dat",
+                FileMode.Create,
+                FileAccess.Write,
+                FileShare.None);
+        formatter.Serialize(stream, chunk);
+        stream.Close();
+    }
+
+    private static Chunk LoadChunk(int row, int column)
     {
         string finalPath = baseFolder + @"\Chunks";
-        IFormatter formatter = new BinaryFormatter();
-        Stream stream = new FileStream(
-            finalPath + @"\" + row.ToString() + "_" + column.ToString() + ".dat", 
-            FileMode.Open);
         Chunk chunk = null;
+        Stream stream = null;
         try
         {
+            stream = new FileStream(
+            finalPath + @"\" + row.ToString() + "_" + column.ToString() + ".dat",
+            FileMode.Open);
             chunk = (Chunk)formatter.Deserialize(stream);
         }
-        catch (SerializationException)
+        catch (SerializationException e)
         {
-            Debug.LogError("Critical serialization error");
+            Debug.LogError(string.Format("Critical serialization error: %s", e.Message));
+            throw e;
         }
         finally
         {
-            stream.Close();
+            if (stream != null)
+            {
+                stream.Close();
+            }
         }
         return chunk;
     }
@@ -103,12 +114,12 @@ public class ChunkManager
     {
         for (int i = 0; i < map.Length; i++ )
         {
-            if(map[i].Length % Chunk.c_chunkHeight != 0)
+            if (map[i].Length % Chunk.c_chunkHeight != 0)
             {
                 throw new InvalidMapSizeException(String.Format(
                     "Map has invalid height, must be divisible by %d", Chunk.c_chunkHeight));
             }
-            if(map[i][0].Length % Chunk.c_chunkWidth != 0 )
+            if (map[i][0].Length % Chunk.c_chunkWidth != 0)
             {
                 throw new InvalidMapSizeException(String.Format(
                     "Map has invalid width, must be divisible by %d", Chunk.c_chunkWidth));
