@@ -7,7 +7,8 @@ public class MapManager : MonoSingleton<MapManager>
     private Map[] m_maps;
 
     [SerializeField]
-    private int mapRows, mapColumns = 0;
+    private int mapRows = 0;
+    private int mapColumns = 0;
     
     public void Reload(ChunkSet chunk)
     {
