@@ -45,8 +45,8 @@ public class ChunkManager
                     if (!map[i][j][k].IsEmpty())
                     {
                         Chunk chunk;
-                        Pair accessPair = new Pair(
-                            j / Chunk.c_chunkHeight, k / Chunk.c_chunkWidth);
+                        Pair accessPair = 
+                            new Pair(j / Chunk.c_chunkHeight, k / Chunk.c_chunkWidth);
                         if (!chunks.TryGetValue(accessPair,out chunk))
                         {
                             chunks[accessPair] = new Chunk(i+1);
