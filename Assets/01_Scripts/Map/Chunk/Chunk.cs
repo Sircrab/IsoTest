@@ -4,7 +4,8 @@ public class Chunk
     public const int c_chunkWidth = 16;
     public const int c_chunkHeight = 16;
 
-    public int chunkRow = 0, chunkColumn = 0;
+    public int row = 0;
+    public int col = 0;
 
     public Tile[][][] m_tiles;
 

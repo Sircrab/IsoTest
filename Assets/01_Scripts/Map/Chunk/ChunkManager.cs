@@ -49,8 +49,8 @@ public class ChunkManager
                         if (!chunks.TryGetValue(accessPair,out chunk))
                         {
                             chunks[accessPair] = new Chunk(i+1);
-                            chunks[accessPair].chunkRow = accessPair.x;
-                            chunks[accessPair].chunkColumn = accessPair.y;                      
+                            chunks[accessPair].row = accessPair.x;
+                            chunks[accessPair].col = accessPair.y;                      
                         }
                         if (chunk != null )
                         {
@@ -64,7 +64,7 @@ public class ChunkManager
         foreach (Chunk chunk in chunks.Values )
         {
             //TODO: hardcoded path
-            Stream stream = new FileStream(finalPath + @"\" + chunk.chunkRow.ToString() + "_" + chunk.chunkColumn.ToString() + ".dat", FileMode.Create, FileAccess.Write, FileShare.None);
+            Stream stream = new FileStream(finalPath + @"\" + chunk.row.ToString() + "_" + chunk.col.ToString() + ".dat", FileMode.Create, FileAccess.Write, FileShare.None);
             formatter.Serialize(stream, chunk);
             stream.Close();
         }
