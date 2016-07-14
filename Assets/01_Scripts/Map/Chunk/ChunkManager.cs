@@ -7,7 +7,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class ChunkManager
 {
-    private static string baseFolder = Application.dataPath;
+    public class InvalidMapSizeException : Exception
+    {
+        public InvalidMapSizeException(string message) : base(message) { }
+    }
 
     private class Pair
     {
@@ -20,10 +23,7 @@ public class ChunkManager
         }
     }
 
-    public class InvalidMapSizeException : Exception
-    {
-        public InvalidMapSizeException(string message) : base(message) { }
-    }
+    private static string baseFolder = Application.dataPath;
 
     public static void Chunkify(Tile[][][] map)
     {
