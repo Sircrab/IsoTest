@@ -4,12 +4,13 @@ using System;
 
 public class ChunkSet
 {
-    public List<Tile[][][]> m_tiles;
+    public List<Chunk> m_chunks;
     public const int TOTAL_TILESETS = 9;
+    
 
-    private ChunkSet(List<Tile[][][]> tiles)
+    private ChunkSet(List<Chunk> chunks)
     {
-        m_tiles = tiles;
+        m_chunks = chunks;
     }
     
     public static ChunkSetBuilder NewBuilder()
@@ -19,20 +20,20 @@ public class ChunkSet
 
     public class ChunkSetBuilder
     {
-        private List<Tile[][][]> tiles;
+        private List<Chunk> tiles;
 
         public ChunkSetBuilder()
         {
-            tiles = new List<Tile[][][]>();
+            tiles = new List<Chunk>();
         }
 
-        public ChunkSetBuilder Add(Tile[][][] tileSet)
+        public ChunkSetBuilder Add(Chunk tileSet)
         {
             tiles.Add(tileSet);
             return this;
         }
 
-        public ChunkSetBuilder Remove(Tile[][][] tileSet)
+        public ChunkSetBuilder Remove(Chunk tileSet)
         {
             tiles.Remove(tileSet);
             return this;
@@ -46,9 +47,9 @@ public class ChunkSet
                 {
                     throw new NullReferenceException("Found null tileset while building.");
                 }
-                tiles.Sort(delegate (Tile[][][] x, Tile[][][] y)
+                tiles.Sort(delegate (Chunk x, Chunk y)
                 {
-                    return x[0][0][0].CompareTo(y[0][0][0]);
+                    return x.m_tiles[0][0][0].CompareTo(y.m_tiles[0][0][0]);
                 });
                 return new ChunkSet(tiles);
             }

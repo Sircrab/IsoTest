@@ -53,14 +53,14 @@ public class MapControllerTest
             for (int j = 0; j < tileSize; j++)
             {
                 tiles[i][j] = new Tile();
-                tiles[i][j].id = 0;
+                tiles[i][j].ID = 0;
             }
         }
 
         mapController.MakeMap(tiles, 0);
 
         meshCreator.Received().CreateMeshFilterWithProperties(
-            Arg.Any<Vector3[]>(), Arg.Any<Vector2[]>(), Arg.Any<int[]>(), Arg.Any<Vector3[]>());
+            Arg.Any<Vector3[]>(), Arg.Any<Vector2[]>(), Arg.Any<int[]>(), Arg.Any<Vector3[]>(), Arg.Any<int>());
     }
 
     private IMeshCreator GetMeshCreatorMock()
